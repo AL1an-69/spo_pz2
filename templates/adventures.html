@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="carousel-section">
+    <div class="carousel-viewport">
+        <div class="carousel-track">
+            {% for adv in adventures %}
+            <article class="adv-card" data-index="{{ loop.index0 }}">
+                <img src="{{ url_for('static', filename='img/' + adv.img) }}" alt="{{ adv.title }}">
+
+                <div class="adv-card-top">
+                    <a href="{{ url_for('adventure_detail', slug=adv.slug) }}" class="adv-expand">✦ Смотреть</a>
+                    <span class="adv-menu">···</span>
+                </div>
+
+                <div class="adv-card-glass">
+                    <h3 class="adv-title">{{ adv.title }}</h3>
+                    <p class="adv-desc">{{ adv.desc }}</p>
+                    <p class="adv-location">
+                        ◎ {{ adv.location }}
+                        <span class="adv-coords">{{ adv.coords }}</span>
+                    </p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <button class="c-btn c-prev" aria-label="Назад">‹</button>
+        <button class="c-btn c-next" aria-label="Вперёд">›</button>
+    </div>
+</section>
+{% endblock %}

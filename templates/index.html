@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Первый экран: видео на всю высоту -->
+<!-- TODO: hero.mp4 будет заменён на реальное видео позже. Currently uses placeholder video/video.mp4 -->
+<section class="hero">
+    <video class="hero-video"
+           autoplay
+           muted
+           loop
+           playsinline
+           poster="{{ url_for('static', filename='img/adv1.jpg') }}">
+        <source src="{{ url_for('static', filename='img/hero.mp4') }}" type="video/mp4">
+    </video>
+
+    <!-- Лёгкое затемнение снизу для плавного перехода -->
+    <div class="hero-gradient"></div>
+
+    <div class="hero-tagline">
+        <span class="hero-tagline-line"></span>
+        <p>ПУТЕШЕСТВИЕ, МЕНЯЮЩЕЕ ЖИЗНЬ</p>
+        <span class="hero-tagline-line"></span>
+    </div>
+    <!-- Кнопка-призыв -->
+    <a href="{{ url_for('adventures') }}" class="hero-cta">СМОТРЕТЬ ПРИКЛЮЧЕНИЯ</a>
+</section>
+
+<!-- Секция «Избранные приключения» -->
+<section class="featured">
+    <div class="container">
+        <h2 class="section-title">ИЗБРАННЫЕ ПРИКЛЮЧЕНИЯ</h2>
+
+        <div class="adv-grid">
+            <!-- Карточка 1: ПОКОРЕНИЕ ЭВЕРЕСТА -->
+            <div class="adv-card">
+                <img src="{{ url_for('static', filename='img/adv1.jpg') }}" alt="Покорение Эвереста">
+                <div class="adv-card-glass">
+                    <h3 class="adv-card-title">ПОКОРЕНИЕ ЭВЕРЕСТА</h3>
+                    <a href="{{ url_for('adventures') }}" class="adv-card-btn">ПОДРОБНЕЕ</a>
+                </div>
+            </div>
+
+            <!-- Карточка 2: ПОЛЁТ НАД ЕВРАЗИЕЙ -->
+            <div class="adv-card">
+                <img src="{{ url_for('static', filename='img/adv2.jpg') }}" alt="Полёт над Евразией">
+                <div class="adv-card-glass">
+                    <h3 class="adv-card-title">ПОЛЁТ НАД ЕВРАЗИЕЙ НА ВОЗДУШНОМ ШАРЕ</h3>
+                    <a href="{{ url_for('adventures') }}" class="adv-card-btn">ПОДРОБНЕЕ</a>
+                </div>
+            </div>
+
+            <!-- Карточка 3: ПЕРЕСЕЧЕНИЕ АТЛАНТИКИ -->
+            <div class="adv-card">
+                <img src="{{ url_for('static', filename='img/adv3.jpg') }}" alt="Пересечение Атлантики">
+                <div class="adv-card-glass">
+                    <h3 class="adv-card-title">ПЕРЕСЕЧЕНИЕ АТЛАНТИКИ НА КАТЕРЕ</h3>
+                    <a href="{{ url_for('adventures') }}" class="adv-card-btn">ПОДРОБНЕЕ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-actions">
+            <a href="{{ url_for('adventures') }}" class="btn">ВСЕ ПРИКЛЮЧЕНИЯ</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

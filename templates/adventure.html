@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}{{ adventure.title }}{% endblock %}
+
+{% block content %}
+<section class="adv-detail">
+
+    <a href="{{ url_for('adventures') }}"
+       class="adv-back">← Назад к приключениям</a>
+
+    <div class="adv-detail-grid">
+
+        <div class="adv-detail-image">
+            <img src="{{ url_for('static', filename='img/' + adventure.img) }}"
+                 alt="{{ adventure.title }}">
+        </div>
+
+        <div class="adv-detail-info">
+            <p class="adv-detail-category">
+                {{ adventure.category }}
+            </p>
+            <h1 class="adv-detail-title">
+                {{ adventure.title }}
+            </h1>
+            <p class="adv-detail-desc">
+                {{ adventure.full_desc }}
+            </p>
+            <button class="adv-detail-btn" id="openApply">
+                ПОДАТЬ ЗАЯВКУ
+            </button>
+        </div>
+
+    </div>
+</section>
+
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="applyModal">
+        <div class="modal-window">
+
+            <button class="modal-close" id="closeApply"
+                    aria-label="Закрыть">×</button>
+
+            <p class="modal-category">{{ adventure.category }}</p>
+            <h2 class="modal-title">{{ adventure.title }}</h2>
+
+            <form method="POST"
+                  action="{{ url_for('apply') }}"
+                  class="modal-form">
+
+                <input type="hidden" name="adventure"
+                       value="{{ adventure.title }}">
+
+                <input type="text"   name="name"
+                       placeholder="Ваше имя" required>
+
+                <input type="number" name="people"
+                       placeholder="Сколько человек"
+                       min="1" value="1" required>
+
+                <textarea name="comment"
+                          placeholder="Комментарий"
+                          rows="4"></textarea>
+
+                <button type="submit" class="modal-submit">
+                    ОТПРАВИТЬ ЗАЯВКУ
+                </button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
